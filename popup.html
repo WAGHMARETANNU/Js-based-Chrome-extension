@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tab Timer</title>
+    <style>
+        body { font-family: Arial; padding: 10px; }
+        h3 { margin-bottom: 5px; }
+        input, button { margin-top: 5px; padding: 5px; }
+    </style>
+</head>
+<body>
+    <h3>Tab Timer</h3>
+    <label for="minutes">Set timer (minutes):</label><br>
+    <input type="number" id="minutes" min="1" placeholder="e.g., 30">
+    <button id="startBtn">Start Timer</button>
+    <p>Elapsed Time: <span id="time">0</span> seconds</p>
+
+    <script src="popup.js"></script>
+</body>
+</html>

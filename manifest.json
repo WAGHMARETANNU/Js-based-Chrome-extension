@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Tab Timer",
+  "version": "1.1",
+  "description": "Tracks time on a website and reminds you to take a break.",
+  "permissions": ["storage"], 
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+}
