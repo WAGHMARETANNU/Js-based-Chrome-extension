@@ -30,35 +30,8 @@ chrome-extension/
 │── manifest.json
 │── popup.html
 │── popup.js
-│── style.css
-│── icons/
-│   └── icon.png
 │── README.md
 ```
-
----
-
-## ⚙️ How to Install Locally
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-   ```
-
-2. Open **Google Chrome** and go to:
-
-   ```
-   chrome://extensions/
-   ```
-
-3. Enable **Developer mode** (top-right corner)
-
-4. Click **Load unpacked**
-
-5. Select the project folder
-
-✅ Extension will be added to your browser
 
 ---
 
