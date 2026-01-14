@@ -1,32 +1,23 @@
 {
   "manifest_version": 3,
-  "name": "Tab Timer",
-  "version": "2.0",
-  "description": "Track time spent on websites with smart reminders.",
+  "name": "Tab Timer Pro",
+  "version": "3.6",
   "permissions": [
     "storage",
     "tabs",
     "alarms",
-    "notifications"
+    "notifications",
+    "scripting" 
   ],
+  "host_permissions": ["<all_urls>"],
   "background": {
     "service_worker": "background.js"
   },
   "action": {
     "default_popup": "popup.html"
-  }
-
-
-
-
-,
-  "commands": {
-  "open-tab-timer": {
-    "suggested_key": {
-      "default": "Ctrl+Shift+Y"
-    },
-    "description": "Open Tab Timer popup"
-  }
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
   }
 }
-

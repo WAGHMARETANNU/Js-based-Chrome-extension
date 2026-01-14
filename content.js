@@ -2,7 +2,6 @@
 // Track when the page was opened
 let startTime = Date.now(); 
 
-// Reminder interval in minutes (change this to your preferred time)
 const reminderMinutes = 0.1; // 0.1 min = 6 seconds (for testing)
 const reminderMs = reminderMinutes * 60 * 1000; // convert to milliseconds
 
