@@ -1,3 +1,4 @@
+//content.js
 // Track when the page was opened
 let startTime = Date.now(); 
 

@@ -1,38 +1,31 @@
-let startTime;
-let reminderMs;
-let timerInterval;
+document.addEventListener("DOMContentLoaded", () => {
+    const input = document.getElementById("timerInput");
+    const startBtn = document.getElementById("startBtn");
+    const message = document.getElementById("message");
 
-// Get DOM elements
-const startBtn = document.getElementById("startBtn");
-const minutesInput = document.getElementById("minutes");
-const timeElement = document.getElementById("time");
-
-// Function to start the timer
-function startTimer() {
-    const minutes = parseFloat(minutesInput.value); // get user input
-    if (isNaN(minutes) || minutes <= 0) {
-        alert("Please enter a valid number of minutes!");
-        return;
-    }
-
-    reminderMs = minutes * 60 * 1000; // convert minutes to milliseconds
-    startTime = Date.now(); // track start time
-
-    // Clear previous timer if exists
-    if (timerInterval) clearInterval(timerInterval);
-
-    timerInterval = setInterval(() => {
-        const elapsed = Date.now() - startTime;
-        const elapsedSeconds = Math.floor(elapsed / 1000);
-        timeElement.textContent = elapsedSeconds;
-
-        // Reminder check
-        if (elapsed >= reminderMs) {
-            alert(`⏰ ${minutes} minute(s) are up! Time to take a break.`);
-            startTime = Date.now(); // reset timer
+    // Check remaining time on popup open
+    chrome.runtime.sendMessage({ action: "getTimeLeft" }, (res) => {
+        if (res.timeLeft > 0) {
+            input.disabled = true;
+            startBtn.disabled = true;
+            message.textContent = `${res.timeLeft} minute(s) remaining ⏳`;
+        } else {
+            input.disabled = false;
+            startBtn.disabled = false;
+            message.textContent = "";
         }
-    }, 1000);
-}
+    });
 
-// Event listener for button
-startBtn.addEventListener("click", startTimer);
+    startBtn.addEventListener("click", () => {
+        const duration = parseInt(input.value);
+        if (!isNaN(duration) && duration > 0) {
+            chrome.runtime.sendMessage({ action: "startTimer", duration }, (res) => {
+                if (res.status === "started") {
+                    input.disabled = true;
+                    startBtn.disabled = true;
+                    message.textContent = `${duration} minute(s) remaining ⏳`;
+                }
+            });
+        }
+    });
+});
